@@ -1,6 +1,6 @@
-#include "header.h"
+#include "so_long.h"
 
-/*static void set_pixel(t_img *data, int x, int y, int color)
+/* static void set_pixel(t_img *data, int x, int y, int color)
 {
 	char *dst;
 
@@ -29,13 +29,18 @@ static void draw_img(t_img img, int x, int y)
 		}
 		y++;
 	}
-}
- */
-t_img ft_init_canvas(t_game *game)
-{
-	t_img img;
+} */
 
-	img.img = mlx_new_image(game->mlx, game->width, game->height);
-	img.adress = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
+t_img *ft_init_canvas()
+{
+	t_img *img;
+
+	img = malloc(sizeof(t_img));
+	if (!img)
+		return (NULL);
+	img->img = mlx_new_image(ft_data()->mlx, ft_data()->width, ft_data()->height);
+	if (!img->img)
+		return(NULL);
+	img->adress = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 	return (img);
 }

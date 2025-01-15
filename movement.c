@@ -1,26 +1,40 @@
-#include "header.h"
+#include "so_long.h"
 
-int ft_move(int key, t_game *game)
+int	movements()
 {
+	static	int moves = 0;
+	moves++;
+	return (moves);
+}
+
+int ft_move(int key)
+{
+	int i = movements();
 	if (key == 119)
 	{
-		game->player.y -= 10;
-		printf("andei p cima\n");
+		ft_data()->player.y -= 10;
+		write(1, "player steps: ", 16);
+		printf(" %d\n", i);
 	}
 	else if (key == 115)
 	{
-		game->player.y += 10;
-		printf("andei p baixo\n");
+		ft_data()->player.y += 10;
+		write(1, "player steps: ", 16);
+		printf(" %d\n", i);
 	}
 	else if (key == 97)
 	{
-		game->player.x -= 10;
-		printf("andei p esquerda\n");
+		ft_data()->player.x -= 10;
+		write(1, "player steps: ", 16);
+		printf(" %d\n", i);
 	}
 	else if (key == 100)
 	{
-		game->player.x += 10;
-		printf("andei p direita\n");
+		ft_data()->player.x += 10;
+		write(1, "player steps: ", 16);
+		printf(" %d\n", i);
 	}
+	else if (key == 27)
+		return (1);
 	return 0;
 }

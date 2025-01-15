@@ -22,4 +22,5 @@ int ft_move(int key, t_game *game)
 		game->player.x += 10;
 		printf("andei p direita\n");
 	}
+	return 0;
 }

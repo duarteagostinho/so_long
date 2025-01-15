@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:32:55 by duandrad          #+#    #+#             */
-/*   Updated: 2024/12/27 12:05:48 by duandrad         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:29:10 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ typedef struct s_game
 
 t_img ft_load_image(void *mlx, char * path);
 int ft_move(int key, t_game *game);
-int ft_loop(t_game *game);
+int ft_loop(t_game *ft_data());
 t_img ft_init_canvas(t_game *game);
 t_game *ft_data();
-void draw_img(t_img img, int x, int y);
 
 #endif

@@ -8,4 +8,4 @@ INCLUDES = -I/usr/include -Imlx
 
 
 r:
-	cc main.c $(MLX_FLAGS) && ./a.out
+	cc -g -o so_long $(CC_FLAGS) *.c $(MLX_FLAGS) && ./a.out

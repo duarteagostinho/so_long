@@ -24,6 +24,6 @@ int main()
 	ft_data()->img = ft_load_image(ft_data()->mlx, "images/Idle-Sheet.xpm");
 	mlx_hook(ft_data()->window, 2, 1L<<0, ft_move, ft_data());
 	mlx_loop_hook(ft_data()->mlx, ft_loop, ft_data());
-	mlx_loop(ft_data()->mlx);
+	//mlx_loop(ft_data()->mlx);
 	return 0;
 }

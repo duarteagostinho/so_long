@@ -73,5 +73,6 @@ t_img *ft_load_image(char * path);
 int ft_move(int key);
 int ft_loop();
 t_img *ft_init_canvas();
+int	exit_game();
 
 #endif

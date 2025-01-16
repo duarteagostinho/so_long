@@ -25,6 +25,7 @@ int main()
 		write(1, "error no canvas", 16);
 	ft_data()->img = ft_load_image("images/Idle-Sheet.xpm");
 	mlx_hook(ft_data()->window, 2, 1L<<0, ft_move, NULL);
+	mlx_hook(ft_data()->window, 17, 1L<<0, exit_game, NULL);
 	mlx_loop_hook(ft_data()->mlx, ft_loop, NULL);
 	mlx_loop(ft_data()->mlx);
 	return 0;

@@ -1,35 +1,41 @@
 #include "so_long.h"
 
-/* static void set_pixel(t_img *data, int x, int y, int color)
+unsigned int *get_pixel(t_img *data, int x, int y)
 {
-	char *dst;
-
-	dst = data->adress + (y * data->line_lenght + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	return ((unsigned int *)(data->adress + (y * data->line_length + x * (data->bits_per_pixel / 8))));
 }
 
-static int get_pixel(t_img *data, int x, int y)
+void draw_img(t_img *img, int x, int y)
 {
-	char *dst;
+	int x1;
+	int y1;
 
-	dst = data->adress + (y * data->line_lenght + x * (data->bits_per_pixel / 8));
-	return (*(unsigned int*)dst);
-}
-
-static void draw_img(t_img img, int x, int y)
-{
-	y = 0;
-	while(y < img.height)
+	y1 = -1;
+	while(++y1 < img->height)
 	{
-		x = 0;
-		while(x < img.width)
+		x1 = -1;
+		while(++x1 < img->width)
 		{
-			set_pixel(img.img, x, y, get_pixel(&img, x, y));
-			x++;
+			if (x + x1 < 0 || x + x1 >= ft_data()->width || y + y1 < 0 || y + y1 >= ft_data()->height)
+				continue;	
+			*get_pixel(ft_data()->canvas, x1 + x, y1 + y) = *get_pixel(img, x1, y1);
 		}
-		y++;
 	}
-} */
+}
+
+void	clear_canvas()
+{
+	int x;
+	int y;
+
+	y = -1;
+	while (++y < ft_data()->height)
+	{
+		x = -1;
+		while (++x < ft_data()->width)
+			*get_pixel(ft_data()->canvas, x, y) = 0x00000000;
+	}
+}
 
 t_img *ft_init_canvas()
 {

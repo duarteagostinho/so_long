@@ -24,13 +24,21 @@
 #  define BUFFER_SIZE 1024
 #endif
 
-typedef struct s_wall_list
+# ifndef SPRITE_SIZE
+#  define SPRITE_SIZE 40
+# endif
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_wall
 {
 	int	x;
-	int	y;	
-	struct s_list	*next;
-	
-}	t_wall_list;
+	int	y;
+}	t_wall;
 
 typedef struct s_img
 {
@@ -51,6 +59,7 @@ typedef struct s_player
 
 typedef struct s_game
 {
+
 	t_img *img;
 	t_img *canvas;
 	void *mlx;
@@ -60,7 +69,7 @@ typedef struct s_game
 	int width;
 	int height;
 	t_img	*wall_img;
-	t_wall_list	*wall_list;
+	t_list	*wall_list;
 }	t_game;
 
 typedef struct s_point
@@ -68,11 +77,24 @@ typedef struct s_point
 	int x;
 	int y;
 }	t_point;
+
 t_game	*ft_data();
 t_img *ft_load_image(char * path);
 int ft_move(int key);
 int ft_loop();
 t_img *ft_init_canvas();
-int	exit_game();
+int	ft_lstsize(t_list *lst);
+t_list	*ft_lstnew(void *content);
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+unsigned int 	*get_pixel(t_img *data, int x, int y);
+void draw_img(t_img *img, int x, int y);
+void	clear_canvas();
+char	*get_next_line(int fd);
 
 #endif

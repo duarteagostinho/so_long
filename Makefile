@@ -9,3 +9,6 @@ INCLUDES = -I/usr/include -Imlx
 
 r:
 	cc -o so_long $(CC_FLAGS) *.c $(MLX_FLAGS) && ./so_long
+
+clean:
+	rm -rf ./so_long

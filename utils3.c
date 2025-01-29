@@ -1,23 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 20:29:46 by duandrad          #+#    #+#             */
-/*   Updated: 2025/01/15 20:43:58 by duandrad         ###   ########.fr       */
+/*   Created: 2025/01/28 16:02:42 by duandrad          #+#    #+#             */
+/*   Updated: 2025/01/28 16:03:37 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	exit_game(int key)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (key == 27)
+	t_list	*deleter;
+
+	if (!lst || !del)
+		return ;
+	while (*lst)
 	{
-		mlx_destroy_window(ft_data()->mlx, ft_data()->window);
-		free(ft_data()->mlx);
+		deleter = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = deleter;
 	}
-	return(0);
+	*lst = 0;
+}
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	new->next = *lst;
+	*lst = new;
+}
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*ptr;
+
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	ptr = ft_lstlast(*lst);
+	ptr->next = new;
 }

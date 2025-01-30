@@ -33,30 +33,30 @@ char	*ft_strdup(char *src)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];
-	char		line[70000];
-	static int	buffer_read;
-	static int 	buffer_pos;
-	int			i;
+	char	buffer;
+	char	*line;
+	int		rd_byte;
+	int		i;
 
+	rd_byte = 1;
 	i = 0;
-	while (1)
+	line = (char *)malloc(sizeof(char) * 9999);
+	buffer = 0;
+	if (fd < 0)
+		return (NULL);
+	while (rd_byte > 0)
 	{
-		if (buffer_pos >= buffer_read)
-		{
-			buffer_read = read(fd, buffer, BUFFER_SIZE);
-			buffer_pos = 0;
-			if (buffer_read <= 0)
-				break ;
-		}
-		line[i++] = buffer[buffer_pos++];
-		if (buffer[buffer_pos] == '\n')
+		rd_byte = read(fd, &buffer, 1);
+		if (rd_byte <= 0)
+			break ;
+		line[i++] = buffer;
+		if (buffer == '\n')
 			break ;
 	}
 	line[i] = '\0';
-	if (i == 0)
-		return (NULL);
-	return (ft_strdup(line));
+	if (!*line)
+		free(line);
+	return (line);
 }
 
 void	flood_fill(char **tab, t_point size, t_point begin)

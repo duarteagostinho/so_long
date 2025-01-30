@@ -12,25 +12,25 @@ int ft_move(int key)
 	int i = movements();
 	if (key == 119)
 	{
-		ft_data()->player.y -= 15;
+		ft_data()->player.y -= 20;
 		write(1, "player steps: ", 15);
 		printf(" %d\n", i);
 	}
 	else if (key == 115)
 	{
-		ft_data()->player.y += 15;
+		ft_data()->player.y += 20;
 		write(1, "player steps: ", 15);
 		printf(" %d\n", i);
 	}
 	else if (key == 97)
 	{
-		ft_data()->player.x -= 15;
+		ft_data()->player.x -= 20;
 		write(1, "player steps: ", 15);
 		printf(" %d\n", i);
 	}
 	else if (key == 100)
 	{
-		ft_data()->player.x += 15;
+		ft_data()->player.x += 20;
 		write(1, "player steps: ", 15);
 		printf(" %d\n", i);
 	}

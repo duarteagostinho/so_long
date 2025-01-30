@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
+# include <string.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -57,6 +58,23 @@ typedef struct s_player
 	int		y;
 }	t_player;
 
+typedef struct s_point
+{
+	int x;
+	int y;
+}	t_point;
+
+typedef struct s_map
+{
+	char **map;
+}	t_map;
+
+typedef struct s_colectible
+{
+	int x;
+	int y;
+}	t_colectible;
+
 typedef struct s_game
 {
 
@@ -68,15 +86,13 @@ typedef struct s_game
 	t_player player;
 	int width;
 	int height;
+	t_map	*map;
 	t_img	*wall_img;
 	t_list	*wall_list;
+	t_list	*colectible_list;
+	t_img	*colectible_img;
 }	t_game;
 
-typedef struct s_point
-{
-	int x;
-	int y;
-}	t_point;
 
 t_game	*ft_data();
 t_img *ft_load_image(char * path);
@@ -96,5 +112,20 @@ unsigned int 	*get_pixel(t_img *data, int x, int y);
 void draw_img(t_img *img, int x, int y);
 void	clear_canvas();
 char	*get_next_line(int fd);
+void	walls_init();
+void	draw_walls(void);
+void	draw_player(void);
+void	load_player(void);
+void	map_init();
+void	draw_map(void);
+int	ft_count_lines(int fd);
+int	ft_line_length(int fd);
+void	flood_fill(char **tab, t_point size, t_point begin);
+void	load_map();
+int	ft_exit(void);
+void	draw_walls(void);
+void	walls_init(void);
+void	colectibles_init(void);
+void	draw_colectibles(void);
 
 #endif

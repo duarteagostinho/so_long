@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 17:04:28 by duandrad          #+#    #+#             */
-/*   Updated: 2025/01/29 17:04:28 by duandrad         ###   ########.fr       */
+/*   Created: 2025/01/30 16:24:58 by duandrad          #+#    #+#             */
+/*   Updated: 2025/01/30 16:26:37 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_player(void)
+void	fputstr(char *str, int fd)
 {
-	ft_data()->img = ft_load_image("images/Idle-Sheet.xpm");
-}
+	size_t	i;
 
-void	draw_player(void)
-{
-	draw_img(ft_data()->img, ft_data()->player.x, ft_data()->player.y);
+	i = 0;
+	while (str[i])
+	{
+		write(fd, &str[i], 1);
+		i++;
+	}
 }

@@ -8,7 +8,7 @@ INCLUDES = -I/usr/include -Imlx
 
 
 r:
-	cc -o so_long $(CC_FLAGS) *.c $(MLX_FLAGS) && ./so_long
+	cc -o so_long $(CC_FLAGS) *.c  $(MLX_FLAGS) && ./so_long "maps/map1.ber"
 
 clean:
 	rm -rf ./so_long

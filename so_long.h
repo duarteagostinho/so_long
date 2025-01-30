@@ -20,6 +20,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <string.h>
+# include <stdbool.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -78,7 +79,7 @@ typedef struct s_colectible
 typedef struct s_game
 {
 
-	t_img *img;
+	t_img *player_img;
 	t_img *canvas;
 	void *mlx;
 	void *display;
@@ -115,17 +116,23 @@ char	*get_next_line(int fd);
 void	walls_init();
 void	draw_walls(void);
 void	draw_player(void);
-void	load_player(void);
+bool	load_player(void);
 void	map_init();
 void	draw_map(void);
 int	ft_count_lines(int fd);
 int	ft_line_length(int fd);
 void	flood_fill(char **tab, t_point size, t_point begin);
-void	load_map();
+bool	load_map(char *path);
 int	ft_exit(void);
 void	draw_walls(void);
 void	walls_init(void);
 void	colectibles_init(void);
 void	draw_colectibles(void);
+t_img *ft_new_image(int width, int height);
+void	fputstr(char *str, int fd);
+void	new_wall(int x, int y);
+void	update_window_size(int width, int height);
+
+
 
 #endif

@@ -9,11 +9,12 @@ t_game *ft_data()
 
 bool	load_images(void)
 {
-	ft_data()->wall_img = ft_load_image("images/ROUNDBRICKS.xpm");
-	ft_data()->player_img = ft_load_image("images/Idle-Sheet.xpm");
+	ft_data()->wall_img = ft_load_image("images/wall.xpm");
+	ft_data()->player_img = ft_load_image("images/player.xpm");
+	ft_data()->colectible_img = ft_load_image("images/collectible.xpm");
 	if (!ft_data()->wall_img || !ft_data()->player_img)
 	{
-		write(2, "image load error\n", 19);
+		write(2, "image load error\n", 18);
 		return (false);
 	}
 	ft_data()->canvas = ft_new_image(ft_data()->width, ft_data()->height);
@@ -24,13 +25,13 @@ bool	init_mlx()
 	ft_data()->mlx = mlx_init();
 	if (!ft_data()->mlx)
 	{
-		write(2, "mlx init error\n", 17);
+		write(2, "mlx init error\n", 16);
 		return (false);
 	}
 	update_window_size(500, 500);
 	if (!ft_data()->window)
 	{
-		write(2, "window load error\n", 20);
+		write(2, "window load error\n", 19);
 		return (false);
 	}
 	return (true);
@@ -41,7 +42,7 @@ bool	check_args(int ac, char **av)
 	(void)av;
 	if (ac != 2)
 	{
-		write(1, "args error\n", 13);
+		write(1, "args error\n", 12);
 		return (false);
 	}
 	return (true);
@@ -53,7 +54,6 @@ void	loop()
 	//mlx_hook(ft_data()->window, 17, 1L<<0, exit_game, NULL);
 	mlx_loop_hook(ft_data()->mlx, ft_loop, NULL);
 	mlx_loop(ft_data()->mlx);
-	printf("%p\n", ft_data()->mlx);
 }
 
 void	update_window_size(int width, int height)

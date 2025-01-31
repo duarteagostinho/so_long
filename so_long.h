@@ -74,7 +74,7 @@ typedef struct s_colectible
 {
 	int x;
 	int y;
-}	t_colectible;
+}	t_collectible;
 
 typedef struct s_game
 {
@@ -85,6 +85,7 @@ typedef struct s_game
 	void *display;
 	void *window;
 	t_player player;
+	t_collectible collectible;
 	int width;
 	int height;
 	t_map	*map;
@@ -132,6 +133,7 @@ t_img *ft_new_image(int width, int height);
 void	fputstr(char *str, int fd);
 void	new_wall(int x, int y);
 void	update_window_size(int width, int height);
+void	draw_collectible();
 
 
 

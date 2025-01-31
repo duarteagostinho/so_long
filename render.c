@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 17:47:13 by duandrad          #+#    #+#             */
-/*   Updated: 2025/01/30 16:09:32 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/01/31 20:42:40 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 void	draw_player(void)
 {
 	draw_img(ft_data()->player_img, ft_data()->player.x, ft_data()->player.y);
+}
+
+void	draw_collectible(void)
+{
+	draw_img(ft_data()->colectible_img, ft_data()->collectible.x, ft_data()->collectible.y);
 }
 
 void	draw_walls()

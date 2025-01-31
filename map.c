@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/01/30 19:20:41 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:11:17 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,15 +100,22 @@ bool	process_line(char *line, size_t line_pos, size_t first_line_len)
 	size_t	i;
 
 	if ((size_t)ft_strlen_t(line, '\n') != first_line_len)
-	{
-		printf("%ld %ld\n", (size_t)ft_strlen(line), first_line_len);
 		return (false);
-	}
 	i = -1;
 	while (line[++i])
 	{
 		if (line[i] == '1')
 			new_wall((int)(i * SPRITE_SIZE), (int)(line_pos * SPRITE_SIZE));
+		else if (line[i] == 'P')
+		{
+			ft_data()->player.x = (int)(i * SPRITE_SIZE);
+			ft_data()->player.y = (int)(line_pos * SPRITE_SIZE);
+		}
+		else if (line[i] == 'C')
+		{
+			ft_data()->collectible.x = (int)(i * SPRITE_SIZE);
+			ft_data()->collectible.y = (int)((line_pos * SPRITE_SIZE) + 5);
+		}
 	}
 	return (true);
 }

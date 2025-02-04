@@ -51,8 +51,8 @@ bool	check_args(int ac, char **av)
 
 void	loop()
 {
+	mlx_hook(ft_data()->window, 17, 1L<<17, exit_game, NULL);
 	mlx_hook(ft_data()->window, 2, 1L<<0, ft_move, NULL);
-	//mlx_hook(ft_data()->window, 17, 1L<<0, exit_game, NULL);
 	mlx_loop_hook(ft_data()->mlx, ft_loop, NULL);
 	mlx_loop(ft_data()->mlx);
 }

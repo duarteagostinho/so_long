@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:36:09 by duandrad          #+#    #+#             */
-/*   Updated: 2025/01/30 15:34:24 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:03:06 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,21 @@ t_list	*ft_lstnew(void *content)
 	new->content = content;
 	new->next = NULL;
 	return (new);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	nb;
+	char	ch;
+
+	nb = n;
+	if (nb < 0)
+	{
+		nb = -nb;
+		write(fd, "-", 1);
+	}
+	if (nb > 9)
+		ft_putnbr_fd((nb / 10), fd);
+	ch = (nb % 10) + '0';
+	write(fd, &ch, 1);
 }

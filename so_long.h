@@ -139,5 +139,8 @@ void	update_window_size(int width, int height);
 void	draw_collectible();
 void	draw_collectibles(void);
 void	draw_exit(void);
+int	exit_game();
+void	ft_putnbr_fd(int n, int fd);
+
 
 #endif

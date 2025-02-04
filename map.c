@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/04 18:45:27 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:00:11 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,7 @@ bool	process_line(char *line, size_t line_pos, size_t first_line_len)
 		if (line[i] == '1')
 			new_wall((int)(i), (int)(line_pos));
 		if (line[i] == 'C')
-		{
-			ft_data()->collectibles++;
 			new_collectible((int)(i), (int)(line_pos));
-		}
 		if (line[i] == 'P')
 		{
 			ft_data()->player.x = (int)(i);

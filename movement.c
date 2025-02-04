@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:57:18 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/04 18:51:59 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:59:30 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@ int	movements()
 	static	int moves = 0;
 	moves++;
 	return (moves);
+}
+
+bool	ate_everything()
+{
+	t_list	*coll;
+	coll = ft_data()->collectible_list;
+	while (coll)
+	{
+		if (((t_collectible *)(coll->content))->active)
+			return (false);
+		coll = coll->next;
+	}
+	return (true);
 }
 
 int ft_move(int key)
@@ -38,14 +51,11 @@ int ft_move(int key)
 		ft_data()->player.x += 1;
 	else
 		return (0);
-	if (collision(ft_data()->player.x, ft_data()->player.y, ft_data()->exit.x, ft_data()->exit.y) && !ft_data()->collectibles)
+	if (collision(ft_data()->player.x, ft_data()->player.y, ft_data()->exit.x, ft_data()->exit.y) && ate_everything())
 		exit_game(0);
 	coll = list_collision(ft_data()->player.x, ft_data()->player.y, ft_data()->collectible_list);
 	if (coll)
-	{
 		coll->active = false;
-		ft_data()->collectibles--;
-	}
 	fputstr("player steps: ", 1);
 	ft_putnbr_fd(movements(), 1);
 	fputstr("\n", 1);

@@ -49,9 +49,14 @@ bool	check_args(int ac, char **av)
 	return (true);
 }
 
+int	_exit_game(void)
+{
+	return(exit_game(0)), 0;
+}
+
 void	loop()
 {
-	mlx_hook(ft_data()->window, 17, 1L<<17, (int (*)())exit_game, NULL);
+	mlx_hook(ft_data()->window, 17, 1L<<17, _exit_game, NULL);
 	mlx_hook(ft_data()->window, 2, 1L<<0, ft_move, NULL);
 	mlx_loop_hook(ft_data()->mlx, ft_loop, NULL);
 	mlx_loop(ft_data()->mlx);

@@ -44,103 +44,100 @@ typedef struct s_wall
 
 typedef struct s_img
 {
-	void *img;
-	char *adress;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
-	int width;
-	int height;
+	void	*img;
+	char	*adress;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 }	t_player;
 
 typedef struct s_point
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_point;
-
-typedef struct s_map
-{
-	char **map;
-}	t_map;
 
 typedef struct s_colectible
 {
-	int x;
-	int y;
+	int		x;
+	int		y;
+	bool	active;
 }	t_collectible;
 
 typedef struct s_game
 {
-
-	t_img *player_img;
-	t_img *canvas;
-	void *mlx;
-	void *display;
-	void *window;
-	t_player player;
-	int width;
-	int height;
-	t_map	*map;
-	t_img	*wall_img;
-	t_list	*wall_list;
-	t_list	*collectible_list;
-	t_img	*collectible_img;
-	t_collectible collectible;
-	t_point exit;
-	t_img *exit_img;
+	int				collectibles;
+	t_img			*player_img;
+	t_img			*canvas;
+	void			*mlx;
+	void			*display;
+	void			*window;
+	t_player		player;
+	int				width;
+	int				height;
+	t_img			*wall_img;
+	t_list			*wall_list;
+	t_list			*collectible_list;
+	t_img			*collectible_img;
+	t_point			exit;
+	t_img			*exit_img;
 }	t_game;
 
 
-t_game	*ft_data();
-t_img *ft_load_image(char * path);
-int ft_move(int key);
-int ft_loop();
-t_img *ft_init_canvas();
-int	ft_lstsize(t_list *lst);
-t_list	*ft_lstnew(void *content);
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-unsigned int 	*get_pixel(t_img *data, int x, int y);
-void draw_img(t_img *img, int x, int y);
-void	clear_canvas();
-char	*get_next_line(int fd);
-void	walls_init();
-void	draw_walls(void);
-void	draw_player(void);
-bool	load_player(void);
-void	map_init();
-void	draw_map(void);
-int	ft_count_lines(int fd);
-int	ft_line_length(int fd);
-void	flood_fill(char **tab, t_point size, t_point begin);
-bool	load_map(char *path);
-int	ft_exit(void);
-void	draw_walls(void);
-void	walls_init(void);
-void	colectibles_init(void);
-void	draw_colectibles(void);
-t_img *ft_new_image(int width, int height);
-void	fputstr(char *str, int fd);
-void	new_wall(int x, int y);
-void	new_collectible(int x, int y);
-void	update_window_size(int width, int height);
-void	draw_collectible();
-void	draw_collectibles(void);
-void	draw_exit(void);
-int	exit_game();
-void	ft_putnbr_fd(int n, int fd);
+t_game			*ft_data();
+t_img			*ft_load_image(char * path);
+int				ft_move(int key);
+int				ft_loop();
+t_img			*ft_init_canvas();
+int				ft_lstsize(t_list *lst);
+t_list			*ft_lstnew(void *content);
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list			*ft_lstlast(t_list *lst);
+void			ft_lstiter(t_list *lst, void (*f)(void *));
+void			ft_lstdelone(t_list *lst, void (*del)(void *));
+void			ft_lstclear(t_list **lst, void (*del)(void *));
+void			ft_lstadd_front(t_list **lst, t_list *new);
+void			ft_lstadd_back(t_list **lst, t_list *new);
+unsigned int	*get_pixel(t_img *data, int x, int y);
+void			draw_img(t_img *img, int x, int y);
+void			clear_canvas();
+char			*get_next_line(int fd);
+void			walls_init();
+void			draw_walls(void);
+void			draw_player(void);
+bool			load_player(void);
+void			map_init();
+void			draw_map(void);
+int				ft_count_lines(int fd);
+int				ft_line_length(int fd);
+void			flood_fill(char **tab, t_point size, t_point begin);
+bool			load_map(char *path);
+int				ft_exit(void);
+void			draw_walls(void);
+void			walls_init(void);
+void			colectibles_init(void);
+void			draw_colectibles(void);
+t_img			*ft_new_image(int width, int height);
+void			fputstr(char *str, int fd);
+void			new_wall(int x, int y);
+void			new_collectible(int x, int y);
+void			update_window_size(int width, int height);
+void			draw_collectible();
+void			draw_collectibles(void);
+void			draw_exit(void);
+void			exit_game(int code);
+void			ft_putnbr_fd(int n, int fd);
+void			*list_collision(int x, int y, t_list *list);
+bool			collision(int x, int y, int x1, int y1);
+void			free_array(char **array);
 
 
 #endif

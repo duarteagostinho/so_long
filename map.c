@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/03 18:35:04 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:45:27 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char **array_join(char **array, char *newstr)
 	len = array_length(array);
 	new_array = malloc((len + 2) * sizeof(char *));
 	if (!new_array)
-		return (NULL);
+		return (free_array(array), free(newstr), NULL);
 	i = 0;
 	while (array && array[i])
 	{
@@ -91,6 +91,8 @@ char **get_map_lines(char *path)
 		start = false;
 		line = get_next_line(fd);
 		array = array_join(array, line);
+		if (!array)
+			return (NULL);
 	}
 	return (array);
 }
@@ -105,18 +107,21 @@ bool	process_line(char *line, size_t line_pos, size_t first_line_len)
 	while (line[++i])
 	{
 		if (line[i] == '1')
-			new_wall((int)(i * SPRITE_SIZE), (int)(line_pos * SPRITE_SIZE));
+			new_wall((int)(i), (int)(line_pos));
 		if (line[i] == 'C')
-			new_collectible((int)(i * SPRITE_SIZE), (int)(line_pos * SPRITE_SIZE));
+		{
+			ft_data()->collectibles++;
+			new_collectible((int)(i), (int)(line_pos));
+		}
 		if (line[i] == 'P')
 		{
-			ft_data()->player.x = (int)(i * SPRITE_SIZE);
-			ft_data()->player.y = (int)(line_pos * SPRITE_SIZE);
+			ft_data()->player.x = (int)(i);
+			ft_data()->player.y = (int)(line_pos);
 		}
 		if (line[i] == 'E')
 		{
-			ft_data()->exit.x = (int)(i * SPRITE_SIZE);
-			ft_data()->exit.y = (int)(line_pos * SPRITE_SIZE);
+			ft_data()->exit.x = (int)(i);
+			ft_data()->exit.y = (int)(line_pos);
 		}
 	}
 	return (true);
@@ -146,6 +151,7 @@ bool	process_lines(char **lines)
 bool	load_map(char *path)
 {
 	char **lines;
+	bool check1;
 
 	lines = get_map_lines(path);
 	if (!lines)
@@ -153,12 +159,12 @@ bool	load_map(char *path)
 		fputstr("error loading map lines\n", 2);
 		return (false);
 	}
-	array_print(lines);
-	if (!process_lines(lines))
+	check1 = process_lines(lines);
+	free_array(lines);
+	if (!check1)
 	{
 		fputstr("error processing map lines\n", 2);
 		return (false);
 	}
 	return (true);
 }
-

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colectibles.c                                      :+:      :+:    :+:   */
+/*   list_collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 20:17:38 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/04 18:36:34 by duandrad         ###   ########.fr       */
+/*   Created: 2025/02/04 15:02:30 by duandrad          #+#    #+#             */
+/*   Updated: 2025/02/04 15:58:05 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	new_collectible(int x, int y)
+void	*list_collision(int x, int y, t_list *list)
 {
-	t_collectible *collectible;
+	t_point *point;
 
-	collectible = malloc(sizeof(t_collectible));
-	collectible->x = x;
-	collectible->y = y;
-	collectible->active= true;
-	ft_lstadd_back(&ft_data()->collectible_list, ft_lstnew(collectible));
+	while (list)
+	{
+		point = list->content;
+		if (collision(x, y, point->x, point->y))
+			return (point);
+		list = list->next;
+	}
+	return (NULL);
+}
+
+bool	collision(int x, int y, int x1, int y1)
+{
+	return (x == x1 && y == y1);
 }

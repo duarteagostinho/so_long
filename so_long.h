@@ -85,14 +85,16 @@ typedef struct s_game
 	void *display;
 	void *window;
 	t_player player;
-	t_collectible collectible;
 	int width;
 	int height;
 	t_map	*map;
 	t_img	*wall_img;
 	t_list	*wall_list;
-	t_list	*colectible_list;
-	t_img	*colectible_img;
+	t_list	*collectible_list;
+	t_img	*collectible_img;
+	t_collectible collectible;
+	t_point exit;
+	t_img *exit_img;
 }	t_game;
 
 
@@ -132,9 +134,10 @@ void	draw_colectibles(void);
 t_img *ft_new_image(int width, int height);
 void	fputstr(char *str, int fd);
 void	new_wall(int x, int y);
+void	new_collectible(int x, int y);
 void	update_window_size(int width, int height);
 void	draw_collectible();
-
-
+void	draw_collectibles(void);
+void	draw_exit(void);
 
 #endif

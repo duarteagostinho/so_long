@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/01/31 21:11:17 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:35:04 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,17 @@ bool	process_line(char *line, size_t line_pos, size_t first_line_len)
 	{
 		if (line[i] == '1')
 			new_wall((int)(i * SPRITE_SIZE), (int)(line_pos * SPRITE_SIZE));
-		else if (line[i] == 'P')
+		if (line[i] == 'C')
+			new_collectible((int)(i * SPRITE_SIZE), (int)(line_pos * SPRITE_SIZE));
+		if (line[i] == 'P')
 		{
 			ft_data()->player.x = (int)(i * SPRITE_SIZE);
 			ft_data()->player.y = (int)(line_pos * SPRITE_SIZE);
 		}
-		else if (line[i] == 'C')
+		if (line[i] == 'E')
 		{
-			ft_data()->collectible.x = (int)(i * SPRITE_SIZE);
-			ft_data()->collectible.y = (int)((line_pos * SPRITE_SIZE) + 5);
+			ft_data()->exit.x = (int)(i * SPRITE_SIZE);
+			ft_data()->exit.y = (int)(line_pos * SPRITE_SIZE);
 		}
 	}
 	return (true);

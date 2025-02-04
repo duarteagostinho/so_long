@@ -11,8 +11,9 @@ bool	load_images(void)
 {
 	ft_data()->wall_img = ft_load_image("images/wall.xpm");
 	ft_data()->player_img = ft_load_image("images/player.xpm");
-	ft_data()->colectible_img = ft_load_image("images/collectible.xpm");
-	if (!ft_data()->wall_img || !ft_data()->player_img)
+	ft_data()->collectible_img = ft_load_image("images/collectible.xpm");
+	ft_data()->exit_img = ft_load_image("images/exit.xpm");
+	if (!ft_data()->wall_img || !ft_data()->player_img || !ft_data()->collectible_img || !ft_data()->exit_img)
 	{
 		write(2, "image load error\n", 18);
 		return (false);

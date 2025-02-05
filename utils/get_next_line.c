@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	check(char *buff)
 {
@@ -30,7 +30,6 @@ int	check(char *buff)
 	return (ret);
 }
 
-/*counts size until newline and includes newline*/
 size_t	len_newline(char *buff)
 {
 	size_t	i;

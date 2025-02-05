@@ -10,26 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "../so_long.h"
 
 int	movements()
 {
 	static	int moves = 0;
 	moves++;
 	return (moves);
-}
-
-bool	ate_everything()
-{
-	t_list	*coll;
-	coll = ft_data()->collectible_list;
-	while (coll)
-	{
-		if (((t_collectible *)(coll->content))->active)
-			return (false);
-		coll = coll->next;
-	}
-	return (true);
 }
 
 int ft_move(int key)
@@ -60,34 +47,4 @@ int ft_move(int key)
 	ft_putnbr_fd(movements(), 1);
 	fputstr("\n", 1);
 	return 0;
-}
-
-void	free_array(char **array)
-{
-	int i;
-
-	i = -1;
-	while(array[++i])
-		free(array[i]);
-	free(array);
-}
-
-void	exit_game(int code)
-{
-	ft_lstclear(&ft_data()->wall_list, free);
-	ft_lstclear(&ft_data()->collectible_list, free);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->player_img->img);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->wall_img->img);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->collectible_img->img);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->exit_img->img);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->canvas->img);
-	mlx_destroy_window(ft_data()->mlx,ft_data()->window);
-	mlx_destroy_display(ft_data()->mlx);
-	free(ft_data()->player_img);
-	free(ft_data()->wall_img);
-	free(ft_data()->collectible_img);
-	free(ft_data()->exit_img);
-	free(ft_data()->mlx);
-	free(ft_data()->canvas);
-	exit(code);
 }

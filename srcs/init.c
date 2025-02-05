@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 
 unsigned int *get_pixel(t_img *data, int x, int y)
 {
@@ -37,4 +37,28 @@ void	clear_canvas()
 		while (++x < ft_data()->width)
 			*get_pixel(ft_data()->canvas, x, y) = 0x00000000;
 	}
+}
+
+void	update_window_size(int width, int height)
+{
+	if (ft_data()->window)
+		mlx_destroy_window(ft_data()->mlx, ft_data()->window);
+	ft_data()->window = mlx_new_window(ft_data()->mlx, width, height, "so_long");
+}
+
+bool	init_mlx()
+{
+	ft_data()->mlx = mlx_init();
+	if (!ft_data()->mlx)
+	{
+		write(2, "mlx init error\n", 16);
+		return (false);
+	}
+	update_window_size(500, 500);
+	if (!ft_data()->window)
+	{
+		write(2, "window load error\n", 19);
+		return (false);
+	}
+	return (true);
 }

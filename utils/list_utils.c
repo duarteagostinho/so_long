@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
@@ -27,12 +27,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	*lst = 0;
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	new->next = *lst;
-	*lst = new;
-}
-
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*ptr;
@@ -46,40 +40,31 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	ptr->next = new;
 }
 
-int	ft_count_lines(int fd)
+t_list	*ft_lstnew(void *content)
 {
-	int		linecount;
-	char	buffer[1];
-	int		bytes;
+	t_list	*new;
 
-	buffer[0] = '\0';
-	linecount = 1;
-	while (1)
-	{
-		bytes = read(fd, buffer, 1);
-		if (bytes < 1)
-			break ;
-		if (buffer[0] == '\n')
-			linecount++;
-	}
-	return (linecount);
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
-int	ft_line_length(int fd)
-{
-	char	buffer[1];
-	int		length;
-	int		bytes;
 
-	buffer[0] = '\0';
-	bytes = 1;
-	length = 0;
-	while (bytes == 1)
-	{
-		bytes = read(fd, buffer, 1);
-		if (buffer[0] != '\n')
-			length++;
-		else
-			break ;
-	}
-	return (length);
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
+}
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (lst == NULL)
+		return (lst);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

@@ -134,10 +134,13 @@ void			draw_collectible();
 void			draw_collectibles(void);
 void			draw_exit(void);
 void			exit_game(int code);
+int				_exit_game(void);
 void			ft_putnbr_fd(int n, int fd);
 void			*list_collision(int x, int y, t_list *list);
 bool			collision(int x, int y, int x1, int y1);
 void			free_array(char **array);
-
+bool			load_images(void);
+bool			init_mlx(void);
+bool			ate_everything(void);
 
 #endif

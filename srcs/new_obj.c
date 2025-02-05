@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	new_collectible(int x, int y)
 {
@@ -22,3 +22,27 @@ void	new_collectible(int x, int y)
 	collectible->active= true;
 	ft_lstadd_back(&ft_data()->collectible_list, ft_lstnew(collectible));
 }
+
+void	new_wall(int x, int y)
+{
+	t_wall *wall;
+
+	wall = malloc(sizeof(t_wall));
+	wall->x = x;
+	wall->y = y;
+	ft_lstadd_back(&ft_data()->wall_list, ft_lstnew(wall));
+}
+
+bool	ate_everything(void)
+{
+	t_list	*coll;
+	coll = ft_data()->collectible_list;
+	while (coll)
+	{
+		if (((t_collectible *)(coll->content))->active)
+			return (false);
+		coll = coll->next;
+	}
+	return (true);
+}
+

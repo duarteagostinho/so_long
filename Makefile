@@ -1,12 +1,12 @@
 NAME = so_long
-SRCS = colectibles.c collisions.c ft_init_canvas.c ft_loop.c\
-get_next_line.c load_image.c main.c map.c movement.c render.c\
-utils.c utils2.c utils3.c utils4.c walls.c
+SRCS = srcs/collisions.c srcs/exit.c srcs/init.c srcs/load_image.c \
+srcs/main.c srcs/map.c srcs/movement.c srcs/new_obj.c srcs/render.c \
+utils/get_next_line.c utils/helper_utils.c utils/list_utils.c
 OBJS = $(SRCS:.c=.o)
 CC = cc
 CC_FLAGS = -g -Wall -Wextra -Werror
 MLX_FLAGS = -Lminilibx-linux -lmlx_Linux -lX11 -lXext
-INCLUDES = -I/usr/include -Imlx
+INCLUDES = -I/usr/include -Imlx \ 
 
 all: $(NAME)
 

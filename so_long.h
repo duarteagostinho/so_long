@@ -91,56 +91,48 @@ typedef struct s_game
 	t_img			*exit_img;
 }	t_game;
 
+/* UTILS */
+t_game			*game();
+t_list			*ft_lstnew(void *content);
+t_list			*ft_lstlast(t_list *lst);
+void			ft_lstdelone(t_list *lst, void (*del)(void *));
+void			ft_lstclear(t_list **lst, void (*del)(void *));
+void			ft_lstadd_back(t_list **lst, t_list *new);
+char			*get_next_line(int fd);
+void			fputstr(char *str, int fd);
+void			ft_putnbr_fd(int n, int fd);
+void			free_array(char **array);
+ssize_t			ft_strlen(char *str);
+ssize_t			ft_strlen_t(char *str, char term);
+size_t			array_length(char **av);
+char			**array_join(char **array, char *newstr);
+void			array_print(char **array);
 
-t_game			*ft_data();
+/* SRCS */
 t_img			*ft_load_image(char * path);
 int				ft_move(int key);
 int				ft_loop();
-t_img			*ft_init_canvas();
-int				ft_lstsize(t_list *lst);
-t_list			*ft_lstnew(void *content);
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-t_list			*ft_lstlast(t_list *lst);
-void			ft_lstiter(t_list *lst, void (*f)(void *));
-void			ft_lstdelone(t_list *lst, void (*del)(void *));
-void			ft_lstclear(t_list **lst, void (*del)(void *));
-void			ft_lstadd_front(t_list **lst, t_list *new);
-void			ft_lstadd_back(t_list **lst, t_list *new);
-unsigned int	*get_pixel(t_img *data, int x, int y);
-void			draw_img(t_img *img, int x, int y);
 void			clear_canvas();
-char			*get_next_line(int fd);
-void			walls_init();
+void			draw_img(t_img *img, int x, int y);
 void			draw_walls(void);
 void			draw_player(void);
-bool			load_player(void);
-void			map_init();
-void			draw_map(void);
-int				ft_count_lines(int fd);
-int				ft_line_length(int fd);
-void			flood_fill(char **tab, t_point size, t_point begin);
-bool			load_map(char *path);
-int				ft_exit(void);
-void			draw_walls(void);
-void			walls_init(void);
-void			colectibles_init(void);
-void			draw_colectibles(void);
-t_img			*ft_new_image(int width, int height);
-void			fputstr(char *str, int fd);
+void			draw_collectibles(void);
 void			new_wall(int x, int y);
 void			new_collectible(int x, int y);
+bool			load_map(char *path);
+t_img			*ft_new_image(int width, int height);
 void			update_window_size(int width, int height);
-void			draw_collectible();
-void			draw_collectibles(void);
 void			draw_exit(void);
 void			exit_game(int code);
 int				_exit_game(void);
-void			ft_putnbr_fd(int n, int fd);
 void			*list_collision(int x, int y, t_list *list);
 bool			collision(int x, int y, int x1, int y1);
-void			free_array(char **array);
 bool			load_images(void);
 bool			init_mlx(void);
 bool			ate_everything(void);
+
+/* MAP CHECKING */
+bool			can_finish(char **map);
+
 
 #endif

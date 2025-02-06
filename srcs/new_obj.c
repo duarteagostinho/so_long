@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colectibles.c                                      :+:      :+:    :+:   */
+/*   new_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 20:17:38 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/04 18:36:34 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:36:42 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	new_collectible(int x, int y)
 	collectible->x = x;
 	collectible->y = y;
 	collectible->active= true;
-	ft_lstadd_back(&ft_data()->collectible_list, ft_lstnew(collectible));
+	ft_lstadd_back(&game()->collectible_list, ft_lstnew(collectible));
 }
 
 void	new_wall(int x, int y)
@@ -30,13 +30,13 @@ void	new_wall(int x, int y)
 	wall = malloc(sizeof(t_wall));
 	wall->x = x;
 	wall->y = y;
-	ft_lstadd_back(&ft_data()->wall_list, ft_lstnew(wall));
+	ft_lstadd_back(&game()->wall_list, ft_lstnew(wall));
 }
 
 bool	ate_everything(void)
 {
 	t_list	*coll;
-	coll = ft_data()->collectible_list;
+	coll = game()->collectible_list;
 	while (coll)
 	{
 		if (((t_collectible *)(coll->content))->active)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:56:45 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/05 16:56:45 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:36:42 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ void	free_array(char **array)
 
 void	exit_game(int code)
 {
-	ft_lstclear(&ft_data()->wall_list, free);
-	ft_lstclear(&ft_data()->collectible_list, free);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->player_img->img);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->wall_img->img);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->collectible_img->img);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->exit_img->img);
-	mlx_destroy_image(ft_data()->mlx, ft_data()->canvas->img);
-	mlx_destroy_window(ft_data()->mlx,ft_data()->window);
-	mlx_destroy_display(ft_data()->mlx);
-	free(ft_data()->player_img);
-	free(ft_data()->wall_img);
-	free(ft_data()->collectible_img);
-	free(ft_data()->exit_img);
-	free(ft_data()->mlx);
-	free(ft_data()->canvas);
+	ft_lstclear(&game()->wall_list, free);
+	ft_lstclear(&game()->collectible_list, free);
+	mlx_destroy_image(game()->mlx, game()->player_img->img);
+	mlx_destroy_image(game()->mlx, game()->wall_img->img);
+	mlx_destroy_image(game()->mlx, game()->collectible_img->img);
+	mlx_destroy_image(game()->mlx, game()->exit_img->img);
+	mlx_destroy_image(game()->mlx, game()->canvas->img);
+	mlx_destroy_window(game()->mlx,game()->window);
+	mlx_destroy_display(game()->mlx);
+	free(game()->player_img);
+	free(game()->wall_img);
+	free(game()->collectible_img);
+	free(game()->exit_img);
+	free(game()->mlx);
+	free(game()->canvas);
 	exit(code);
 }
 

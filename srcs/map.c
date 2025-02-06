@@ -3,77 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/04 19:00:11 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:50:56 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-ssize_t	ft_strlen_t(char *str, char term)
-{
-	size_t	size;
-	
-	if (!str)
-		return (-1);
-	size = 0;
-	while (str[size] && str[size] != term)
-		size++;
-	return (size);
-}
-
-ssize_t	ft_strlen(char *str)
-{
-	return (ft_strlen_t(str, 0));
-}
-
-size_t	array_length(char **av)
-{
-	size_t i;
-
-	i = 0;
-	while (av && av[i])
-		i++;
-	return (i);
-}
-
-char **array_join(char **array, char *newstr)
-{
-	char **new_array;
-	size_t len;
-	size_t	i;
-	
-	if (!newstr)
-		return (array);
-	len = array_length(array);
-	new_array = malloc((len + 2) * sizeof(char *));
-	if (!new_array)
-		return (free_array(array), free(newstr), NULL);
-	i = 0;
-	while (array && array[i])
-	{
-		new_array[i] = array[i];
-		i++;
-	}
-	new_array[i] = newstr;
-	new_array[i + 1] = NULL;
-	free(array);
-	return (new_array);
-}
-
-void	array_print(char **array)
-{
-	size_t i;
-
-	if (!array)
-		return ;
-	i = -1;
-	while (array[++i])
-		fputstr(array[i], 1);
-	fputstr("\n", 1);
-}
 
 char **get_map_lines(char *path)
 {
@@ -92,9 +29,9 @@ char **get_map_lines(char *path)
 		line = get_next_line(fd);
 		array = array_join(array, line);
 		if (!array)
-			return (NULL);
+			return (close(fd), NULL);
 	}
-	return (array);
+	return (close(fd), array);
 }
 
 bool	process_line(char *line, size_t line_pos, size_t first_line_len)
@@ -112,13 +49,13 @@ bool	process_line(char *line, size_t line_pos, size_t first_line_len)
 			new_collectible((int)(i), (int)(line_pos));
 		if (line[i] == 'P')
 		{
-			ft_data()->player.x = (int)(i);
-			ft_data()->player.y = (int)(line_pos);
+			game()->player.x = (int)(i);
+			game()->player.y = (int)(line_pos);
 		}
 		if (line[i] == 'E')
 		{
-			ft_data()->exit.x = (int)(i);
-			ft_data()->exit.y = (int)(line_pos);
+			game()->exit.x = (int)(i);
+			game()->exit.y = (int)(line_pos);
 		}
 	}
 	return (true);
@@ -138,17 +75,17 @@ bool	process_lines(char **lines)
 		if (!process_line(line, i, first_line_length))
 			return (false);
 	}
-	ft_data()->width = first_line_length * SPRITE_SIZE;
-	ft_data()->height = i * SPRITE_SIZE;
-	update_window_size(ft_data()->width, ft_data()->height);
-	if (!ft_data()->window)
+	game()->width = first_line_length * SPRITE_SIZE;
+	game()->height = i * SPRITE_SIZE;
+	update_window_size(game()->width, game()->height);
+	if (!game()->window)
 		return (false);
 	return (true);
 }
 bool	load_map(char *path)
 {
 	char **lines;
-	bool check1;
+	bool check;
 
 	lines = get_map_lines(path);
 	if (!lines)
@@ -156,9 +93,9 @@ bool	load_map(char *path)
 		fputstr("error loading map lines\n", 2);
 		return (false);
 	}
-	check1 = process_lines(lines);
+	check = process_lines(lines) && can_finish(lines);
 	free_array(lines);
-	if (!check1)
+	if (!check)
 	{
 		fputstr("error processing map lines\n", 2);
 		return (false);

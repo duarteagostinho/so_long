@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:43:43 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/06 20:26:13 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:57:12 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	loop()
 
 int main(int ac, char **av)
 {
-	if (!check_args(ac, av) || !init_mlx() || !load_map(av[1]) || !load_images())
+	if (!check_args(ac, av) || !load_map(av[1]) || !init_mlx() || !load_images())
 		return (1);
 	loop();
 }

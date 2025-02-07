@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 13:06:26 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/04 20:59:49 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:59:11 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ char	*get_next_line(int fd)
 		if (bytes)
 			line = ft_strjoin_gnl(line, buffer[fd]);
 		if (check(buffer[fd]) || bytes == 0)
+		{
+			free(line);
 			break ;
+		}
 	}
 	return (line);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:55:35 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/06 16:55:46 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/06 20:30:30 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,4 @@ char **array_join(char **array, char *newstr)
 	new_array[i + 1] = NULL;
 	free(array);
 	return (new_array);
-}
-
-void	array_print(char **array)
-{
-	size_t i;
-
-	if (!array)
-		return ;
-	i = -1;
-	while (array[++i])
-		fputstr(array[i], 1);
-	fputstr("\n", 1);
 }

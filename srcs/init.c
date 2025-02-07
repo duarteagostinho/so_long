@@ -51,13 +51,13 @@ bool	init_mlx()
 	game()->mlx = mlx_init();
 	if (!game()->mlx)
 	{
-		write(2, "mlx init error\n", 16);
+		fputstr("Error\nMlx init\n", 1);
 		return (false);
 	}
 	update_window_size(500, 500);
 	if (!game()->window)
 	{
-		write(2, "window load error\n", 19);
+		fputstr("Error\nWindow load\n", 1);
 		return (false);
 	}
 	return (true);

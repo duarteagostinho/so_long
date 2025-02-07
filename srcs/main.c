@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:43:43 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/06 19:19:24 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/06 20:26:13 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ bool	check_args(int ac, char **av)
 	(void)av;
 	if (ac != 2)
 	{
-		write(1, "args error\n", 12);
+		fputstr("Error\nInvalid number of args\n", 1);
 		return (false);
 	}
-	if (ft_strlen(av[1]) >= 3 && av[1][ft_strlen(av[1]) - 4] == 'b' && av[1][ft_strlen(av[1]) - 3] == 'e' && av[1][ft_strlen(av[1]) - 2] == 'r')
+	if (ft_strlen(av[1]) >= 3 &&
+		!(av[1][ft_strlen(av[1]) - 3] == 'b' && av[1][ft_strlen(av[1]) - 2] == 'e' &&
+		av[1][ft_strlen(av[1]) - 1] == 'r'))
 	{
-		fputstr("invalid .ber\n", 1);
+		fputstr("Error\nInvalid .ber\n", 1);
 		return(false);
 	}
 	return (true);

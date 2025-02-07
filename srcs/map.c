@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/06 16:50:56 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/06 20:29:05 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ bool	load_map(char *path)
 	lines = get_map_lines(path);
 	if (!lines)
 	{
-		fputstr("error loading map lines\n", 2);
+		fputstr("Error\nLoading map lines\n", 1);
 		return (false);
 	}
-	check = process_lines(lines) && can_finish(lines);
+	check = process_lines(lines) || can_finish(lines);
 	free_array(lines);
 	if (!check)
 	{
-		fputstr("error processing map lines\n", 2);
+		fputstr("Error\nProcessing map lines\n", 1);
 		return (false);
 	}
 	return (true);

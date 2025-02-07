@@ -36,7 +36,7 @@ bool	load_images(void)
 	game()->exit_img = ft_load_image("images/exit.xpm");
 	if (!game()->wall_img || !game()->player_img || !game()->collectible_img || !game()->exit_img)
 	{
-		write(2, "image load error\n", 18);
+		fputstr("Error\nImage load\n", 1);
 		return (false);
 	}
 	game()->canvas = ft_new_image(game()->width, game()->height);

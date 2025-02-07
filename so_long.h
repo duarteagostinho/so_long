@@ -106,7 +106,6 @@ ssize_t			ft_strlen(char *str);
 ssize_t			ft_strlen_t(char *str, char term);
 size_t			array_length(char **av);
 char			**array_join(char **array, char *newstr);
-void			array_print(char **array);
 
 /* SRCS */
 t_img			*ft_load_image(char * path);

@@ -39,13 +39,6 @@ void	clear_canvas()
 	}
 }
 
-void	update_window_size(int width, int height)
-{
-	if (game()->window)
-		mlx_destroy_window(game()->mlx, game()->window);
-	game()->window = mlx_new_window(game()->mlx, width, height, "so_long");
-}
-
 bool	init_mlx()
 {
 	game()->mlx = mlx_init();
@@ -54,7 +47,7 @@ bool	init_mlx()
 		fputstr("Error\nMlx init\n", 1);
 		return (false);
 	}
-	update_window_size(500, 500);
+	game()->window = mlx_new_window(game()->mlx, game()->width, game()->height,  "so_long");
 	if (!game()->window)
 	{
 		fputstr("Error\nWindow load\n", 1);

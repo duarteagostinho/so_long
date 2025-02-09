@@ -7,7 +7,7 @@ OBJS = $(SRCS:.c=.o)
 CC = cc
 CC_FLAGS = -g -Wall -Wextra -Werror
 MLX_FLAGS = -Lminilibx-linux -lmlx_Linux -lX11 -lXext
-INCLUDES = -I/usr/include -Imlx \ 
+INCLUDES = -I/usr/include -Imlx
 
 all: $(NAME)
 

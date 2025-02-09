@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:56:45 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/06 15:36:42 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/09 03:34:15 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	free_array(char **array)
 {
 	int i;
 
-	i = -1;
-	while(array[++i])
-		free(array[i]);
+	i = 0;
+	while(array && array[i])
+		free(array[i++]);
 	free(array);
 }
 
@@ -33,6 +33,7 @@ void	exit_game(int code)
 	mlx_destroy_image(game()->mlx, game()->canvas->img);
 	mlx_destroy_window(game()->mlx,game()->window);
 	mlx_destroy_display(game()->mlx);
+	free_array(game()->map);
 	free(game()->player_img);
 	free(game()->wall_img);
 	free(game()->collectible_img);

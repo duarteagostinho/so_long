@@ -83,12 +83,16 @@ typedef struct s_game
 	t_player		player;
 	int				width;
 	int				height;
+	char			**map;
 	t_img			*wall_img;
 	t_list			*wall_list;
 	t_list			*collectible_list;
 	t_img			*collectible_img;
 	t_point			exit;
 	t_img			*exit_img;
+	int				player_count;
+	int				coll_count;
+	int				exit_count;
 }	t_game;
 
 /* UTILS */
@@ -106,6 +110,8 @@ ssize_t			ft_strlen(char *str);
 ssize_t			ft_strlen_t(char *str, char term);
 size_t			array_length(char **av);
 char			**array_join(char **array, char *newstr);
+bool			check_borders(char **map);
+bool			check_counters(char **map);
 
 /* SRCS */
 t_img			*ft_load_image(char * path);

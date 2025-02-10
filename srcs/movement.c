@@ -12,13 +12,15 @@
 
 #include "../so_long.h"
 
-int	movements()
+int	movements(void)
 {
-	static	int moves = 0;
+	static int	moves = 0;
+
 	moves++;
 	return (moves);
 }
-static void move_player(int x, int y)
+
+static void	move_player(int x, int y)
 {
 	if (!list_collision(x, y, game()->wall_list))
 	{
@@ -27,18 +29,20 @@ static void move_player(int x, int y)
 	}
 }
 
-static void check_exit_and_collectibles()
+static void	check_exit_and_collectibles(void)
 {
-	t_collectible *coll;
+	t_collectible	*coll;
 
-	if (collision(game()->player.x, game()->player.y, game()->exit.x, game()->exit.y) && ate_everything())
+	if (collision(game()->player.x, game()->player.y, game()->exit.x,
+			game()->exit.y) && ate_everything())
 		exit_game(0);
-	coll = list_collision(game()->player.x, game()->player.y, game()->collectible_list);
+	coll = list_collision(game()->player.x, game()->player.y,
+			game()->collectible_list);
 	if (coll)
 		coll->active = false;
 }
 
-int ft_move(int key)
+int	ft_move(int key)
 {
 	if (key == 65307)
 		exit_game(0);
@@ -56,5 +60,5 @@ int ft_move(int key)
 	fputstr("Moves: ", 1);
 	ft_putnbr_fd(movements(), 1);
 	fputstr("\n", 1);
-	return 0;
+	return (0);
 }

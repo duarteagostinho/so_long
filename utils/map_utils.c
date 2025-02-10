@@ -75,20 +75,16 @@ bool	check_borders(char **map)
 	return (true);
 }
 
-bool	check_counters(char **map)
+void	count_elements(char **map, size_t map_height, size_t map_width)
 {
 	ssize_t	x;
 	ssize_t	y;
-	size_t	end_line;
-	size_t	line_len;
 
 	y = -1;
-	line_len = ft_strlen_t(map[0], '\n');
-	end_line = array_length(map);
-	while (++y < end_line)
+	while (++y < map_height)
 	{
 		x = -1;
-		while (++x < line_len)
+		while (++x < map_width)
 		{
 			if (map[y][x] == 'P')
 				game()->player_count++;
@@ -98,7 +94,18 @@ bool	check_counters(char **map)
 				game()->coll_count++;
 		}
 	}
-	if (game()->player_count != 1 || game()->exit_count != 1 || game()->coll_count < 1)
+}
+
+bool	check_counters(char **map)
+{
+	size_t	map_height;
+	size_t	map_width;
+
+	map_height = array_length(map);
+	map_width = ft_strlen_t(map[0], '\n');
+	count_elements(map, map_height, map_width);
+	if (game()->player_count != 1 || game()->exit_count != 1
+		|| game()->coll_count < 1)
 	{
 		ft_lstclear(&game()->wall_list, free);
 		ft_lstclear(&game()->collectible_list, free);

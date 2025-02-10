@@ -14,20 +14,20 @@
 
 void	new_collectible(int x, int y)
 {
-	t_collectible *collectible;
+	t_collectible	*collectible;
 
 	collectible = malloc(sizeof(t_collectible));
 	if (!collectible)
 		return ;
 	collectible->x = x;
 	collectible->y = y;
-	collectible->active= true;
+	collectible->active = true;
 	ft_lstadd_back(&game()->collectible_list, ft_lstnew(collectible));
 }
 
 void	new_wall(int x, int y)
 {
-	t_wall *wall;
+	t_wall	*wall;
 
 	wall = malloc(sizeof(t_wall));
 	if (!wall)
@@ -50,4 +50,3 @@ bool	ate_everything(void)
 	}
 	return (true);
 }
-

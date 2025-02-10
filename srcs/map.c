@@ -12,11 +12,11 @@
 
 #include "../so_long.h"
 
-char **get_map_lines(char *path)
+char	**get_map_lines(char *path)
 {
-	int fd;
-	char **array;
-	char *line;
+	int		fd;
+	char	**array;
+	char	*line;
 
 	array = NULL;
 	fd = open(path, O_RDONLY);
@@ -61,9 +61,10 @@ bool	process_line(char *line, size_t line_pos, size_t first_line_len)
 
 bool	process_lines(char **lines)
 {
-	size_t i;
-	size_t first_line_length;
-	char *line;
+	size_t	i;
+	size_t	first_line_length;
+	size_t	map_height;
+	char	*line;
 
 	if (!lines)
 	{
@@ -80,15 +81,16 @@ bool	process_lines(char **lines)
 			free_array(lines);
 			return (false);
 		}
+		game()->width = first_line_length * SPRITE_SIZE;
 	}
-	game()->width = first_line_length * SPRITE_SIZE;
 	game()->height = i * SPRITE_SIZE;
 	return (true);
 }
+
 bool	load_map(char *path)
 {
-	char **lines;
-	bool check;
+	char	**lines;
+	bool	check;
 
 	lines = get_map_lines(path);
 	if (!lines)
@@ -106,8 +108,6 @@ bool	load_map(char *path)
 	}
 	check = check_borders(lines) && check_counters(lines) && can_finish(lines);
 	if (!check)
-	{
 		return (false);
-	}
 	return (true);
 }

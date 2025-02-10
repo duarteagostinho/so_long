@@ -14,39 +14,43 @@
 
 void	draw_player(void)
 {
-	draw_img(game()->player_img, game()->player.x * SPRITE_SIZE, game()->player.y * SPRITE_SIZE);
+	draw_img(game()->player_img, game()->player.x * SPRITE_SIZE,
+		game()->player.y * SPRITE_SIZE);
 }
 
-void	draw_walls()
+void	draw_walls(void)
 {
-	t_list *tmp;
-	t_wall *wall;
+	t_list	*tmp;
+	t_wall	*wall;
 
 	tmp = game()->wall_list;
 	while (tmp)
 	{
 		wall = tmp->content;
-		draw_img(game()->wall_img, wall->x * SPRITE_SIZE, wall->y  * SPRITE_SIZE);
+		draw_img(game()->wall_img, wall->x * SPRITE_SIZE,
+			wall->y * SPRITE_SIZE);
 		tmp = tmp->next;
 	}
 }
 
 void	draw_collectibles(void)
 {
-	t_list *tmp;
-	t_collectible *collectible;
+	t_list			*tmp;
+	t_collectible	*collectible;
 
 	tmp = game()->collectible_list;
 	while (tmp)
 	{
 		collectible = tmp->content;
 		if (collectible->active)
-			draw_img(game()->collectible_img, collectible->x * SPRITE_SIZE, collectible->y * SPRITE_SIZE);
+			draw_img(game()->collectible_img, collectible->x * SPRITE_SIZE,
+				collectible->y * SPRITE_SIZE);
 		tmp = tmp->next;
 	}
 }
 
 void	draw_exit(void)
 {
-	draw_img(game()->exit_img, game()->exit.x * SPRITE_SIZE, game()->exit.y * SPRITE_SIZE);
+	draw_img(game()->exit_img, game()->exit.x * SPRITE_SIZE,
+		game()->exit.y * SPRITE_SIZE);
 }

@@ -14,10 +14,10 @@
 
 void	free_array(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(array && array[i])
+	while (array && array[i])
 		free(array[i++]);
 	free(array);
 }
@@ -31,7 +31,7 @@ void	exit_game(int code)
 	mlx_destroy_image(game()->mlx, game()->collectible_img->img);
 	mlx_destroy_image(game()->mlx, game()->exit_img->img);
 	mlx_destroy_image(game()->mlx, game()->canvas->img);
-	mlx_destroy_window(game()->mlx,game()->window);
+	mlx_destroy_window(game()->mlx, game()->window);
 	mlx_destroy_display(game()->mlx);
 	free_array(game()->map);
 	free(game()->player_img);
@@ -45,5 +45,5 @@ void	exit_game(int code)
 
 int	_exit_game(void)
 {
-	return(exit_game(0), 0);
+	return (exit_game(0), 0);
 }

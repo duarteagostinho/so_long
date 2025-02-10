@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_collisions.c                                       :+:      :+:    :+:   */
+/*   list_collisions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,7 @@
 
 void	*list_collision(int x, int y, t_list *list)
 {
-	t_point *point;
+	t_point	*point;
 
 	while (list)
 	{

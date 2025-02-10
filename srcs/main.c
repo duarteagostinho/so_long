@@ -31,7 +31,7 @@ bool	check_args(int ac, char **av)
 		&& av[1][ft_strlen(av[1]) - 2] == 'e'
 		&& av[1][ft_strlen(av[1]) - 1] == 'r'))
 	{
-		fputstr("Error\nInvalid .ber\n", 1);
+		fputstr("Error\nInvalid map\n", 1);
 		return (false);
 	}
 	return (true);

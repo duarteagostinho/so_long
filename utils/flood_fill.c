@@ -64,7 +64,7 @@ static bool	check_chars(char **map)
 		x = -1;
 		while (++x < ft_strlen_t(map[y], '\n'))
 		{
-			if (map[y][x] != '1')
+			if (map[y][x] != '1' && map[y][x] != '0')
 			{
 				ft_lstclear(&game()->wall_list, free);
 				ft_lstclear(&game()->collectible_list, free);

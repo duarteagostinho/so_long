@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/10 00:39:55 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:50:54 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@ bool	process_line(char *line, size_t line_pos, size_t first_line_len)
 		if (line[i] == 'C')
 			new_collectible((int)(i), (int)(line_pos));
 		if (line[i] == 'P')
-		{
-			game()->player.x = (int)(i);
-			game()->player.y = (int)(line_pos);
-		}
+			set_player_pos((int)(i), (int)(line_pos));
 		if (line[i] == 'E')
+			set_exit_point((int)(i), (int)(line_pos));
+		if (line[i] != '1' && line[i] != 'C'
+			&& line[i] != 'P' && line[i] != 'E' && line[i] != '0'
+			&& line[i] != '\n')
 		{
-			game()->exit.x = (int)(i);
-			game()->exit.y = (int)(line_pos);
+			fputstr("Invalid character\n", 1);
+			return (false);
 		}
 	}
 	return (true);
@@ -75,7 +76,7 @@ bool	process_lines(char **lines)
 	while (lines[++i])
 	{
 		line = lines[i];
-		printf("line %s", line);
+		if (!process_line(line, i, first_line_length))
 		{
 			free_array(lines);
 			return (false);

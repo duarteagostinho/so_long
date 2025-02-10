@@ -40,6 +40,7 @@ void	exit_game(int code)
 	free(game()->exit_img);
 	free(game()->mlx);
 	free(game()->canvas);
+	fputstr("CONGRATULATIONS!MAP PASSED!\n", 1);
 	exit(code);
 }
 

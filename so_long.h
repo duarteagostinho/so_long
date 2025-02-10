@@ -114,6 +114,8 @@ bool			check_borders(char **map);
 bool			check_counters(char **map);
 bool			ate_everything(void);
 bool			can_finish(char **map);
+void			set_player_pos(int i, int line_pos);
+void			set_exit_point(int i, int line_pos);
 
 /* SRCS */
 t_img			*ft_load_image(char *path);

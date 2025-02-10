@@ -110,7 +110,7 @@ bool	check_counters(char **map)
 		ft_lstclear(&game()->wall_list, free);
 		ft_lstclear(&game()->collectible_list, free);
 		free_array(map);
-		fputstr("Error\nInvalid number of game counters\n", 1);
+		fputstr("Error\nInvalid number of components\n", 1);
 		return (false);
 	}
 	return (true);

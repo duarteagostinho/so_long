@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                           :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:32:55 by duandrad          #+#    #+#             */
-/*   Updated: 2024/12/27 12:27:59 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:58:42 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
-#endif
+# endif
 
 # ifndef SPRITE_SIZE
 #  define SPRITE_SIZE 40
@@ -96,7 +96,7 @@ typedef struct s_game
 }	t_game;
 
 /* UTILS */
-t_game			*game();
+t_game			*game(void);
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *lst);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
@@ -112,12 +112,14 @@ size_t			array_length(char **av);
 char			**array_join(char **array, char *newstr);
 bool			check_borders(char **map);
 bool			check_counters(char **map);
+bool			ate_everything(void);
+bool			can_finish(char **map);
 
 /* SRCS */
-t_img			*ft_load_image(char * path);
+t_img			*ft_load_image(char *path);
 int				ft_move(int key);
-int				ft_loop();
-void			clear_canvas();
+int				ft_loop(void);
+void			clear_canvas(void);
 void			draw_img(t_img *img, int x, int y);
 void			draw_walls(void);
 void			draw_player(void);
@@ -134,10 +136,5 @@ void			*list_collision(int x, int y, t_list *list);
 bool			collision(int x, int y, int x1, int y1);
 bool			load_images(void);
 bool			init_mlx(void);
-bool			ate_everything(void);
-
-/* MAP CHECKING */
-bool			can_finish(char **map);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 13:06:26 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/09 01:53:14 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:54:58 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,3 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-

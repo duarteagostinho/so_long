@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:36:09 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/06 16:55:19 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/10 01:00:19 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*ft_strdup(char *src)
 	i = 0;
 	while (src[i])
 	{
-	   dest[i] = src[i];
-	   i++;
+		dest[i] = src[i];
+		i++;
 	}
 	dest[i] = '\0';
 	return (dest);
@@ -59,10 +59,11 @@ void	fputstr(char *str, int fd)
 		i++;
 	}
 }
+
 ssize_t	ft_strlen_t(char *str, char term)
 {
 	size_t	size;
-	
+
 	if (!str)
 		return (-1);
 	size = 0;

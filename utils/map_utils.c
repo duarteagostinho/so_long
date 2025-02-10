@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:55:35 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/09 03:10:48 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/10 01:01:51 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	array_length(char **av)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (av && av[i])
@@ -22,12 +22,12 @@ size_t	array_length(char **av)
 	return (i);
 }
 
-char **array_join(char **array, char *newstr)
+char	**array_join(char **array, char *newstr)
 {
-	char **new_array;
-	size_t len;
+	char	**new_array;
+	size_t	len;
 	size_t	i;
-	
+
 	if (!newstr)
 		return (array);
 	len = array_length(array);
@@ -45,6 +45,7 @@ char **array_join(char **array, char *newstr)
 	free(array);
 	return (new_array);
 }
+
 bool	check_borders(char **map)
 {
 	ssize_t	x;
@@ -63,6 +64,9 @@ bool	check_borders(char **map)
 			if ((y == 0 || y == map_height - 1) && (map[y][x] != '1') ||
 				((x == 0 || x == map_width) && map[y][x] != '1'))
 			{
+				ft_lstclear(&game()->wall_list, free);
+				ft_lstclear(&game()->collectible_list, free);
+				free_array(map);
 				fputstr("Error\nInvalid map borders\n", 1);
 				return (false);
 			}
@@ -96,6 +100,9 @@ bool	check_counters(char **map)
 	}
 	if (game()->player_count != 1 || game()->exit_count != 1 || game()->coll_count < 1)
 	{
+		ft_lstclear(&game()->wall_list, free);
+		ft_lstclear(&game()->collectible_list, free);
+		free_array(map);
 		fputstr("Error\nInvalid number of game counters\n", 1);
 		return (false);
 	}

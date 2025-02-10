@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:41:15 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/09 03:16:40 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:57:50 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	flood_fill_map(char **map)
 	y = -1;
 	while (map[++y])
 	{
-	x = -1;
-	while (map[y][++x])
+		x = -1;
+		while (map[y][++x])
 		{
 			if (map[y][x] == 'P')
 			{
@@ -66,6 +66,8 @@ static bool	check_chars(char **map)
 		{
 			if (map[y][x] != '1')
 			{
+				ft_lstclear(&game()->wall_list, free);
+				ft_lstclear(&game()->collectible_list, free);
 				free_array(map);
 				fputstr("Error\nFinishing not possible\n", 1);
 				exit(1);
@@ -77,7 +79,6 @@ static bool	check_chars(char **map)
 
 bool	can_finish(char **map)
 {
-	check_borders(map);
 	flood_fill_map(map);
-	return(check_chars(map) && check_borders(map));
+	return (check_chars(map));
 }

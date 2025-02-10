@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/09 04:10:04 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:39:55 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,13 @@ bool	load_map(char *path)
 	bool check;
 
 	lines = get_map_lines(path);
-	game()->map = lines;
 	if (!lines)
 	{
+		free_array(lines);
 		fputstr("Error\nLoading map lines\n", 1);
 		return (false);
 	}
+	game()->map = lines;
 	check = process_lines(lines);
 	if (!check)
 	{
@@ -105,6 +106,8 @@ bool	load_map(char *path)
 	}
 	check = check_borders(lines) && check_counters(lines) && can_finish(lines);
 	if (!check)
+	{
 		return (false);
+	}
 	return (true);
 }

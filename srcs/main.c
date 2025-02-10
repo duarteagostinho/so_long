@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:43:43 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/09 04:13:23 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:38:48 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ int main(int ac, char **av)
 	if (!check_args(ac, av) || !load_map(av[1]) || !init_mlx() || !load_images())
 		return (1);
 	loop();
+	return (0);
 }

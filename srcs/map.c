@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/10 14:50:54 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:35:32 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ bool	process_lines(char **lines)
 		line = lines[i];
 		if (!process_line(line, i, first_line_length))
 		{
+			ft_lstclear(&game()->wall_list, free);
+			ft_lstclear(&game()->collectible_list, free);
 			free_array(lines);
 			return (false);
 		}

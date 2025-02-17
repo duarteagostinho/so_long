@@ -46,30 +46,43 @@ char	**array_join(char **array, char *newstr)
 	return (new_array);
 }
 
+bool	line_is_walls(char *line)
+{
+	ssize_t	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		if (line[i] != '1')
+			return(false);
+		i++;
+	}
+	return (true);
+}
+
 bool	check_borders(char **map)
 {
 	ssize_t	x;
 	ssize_t	y;
 	size_t	map_height;
 	size_t	map_width;
+	bool	has_walls;
+	bool	is_walls;
 
 	y = -1;
 	map_width = ft_strlen_t(map[0], '\n');
 	map_height = array_length(map);
 	while (++y < map_height)
 	{
-		x = -1;
-		while (++x < map_width)
+		has_walls = map[y][0] == '1' && map[y][ft_strlen_t(map[y], '\n') - 1] == '1';
+		is_walls = line_is_walls(map[y]);
+		if (!has_walls || ((y == 0 || y == map_height - 1) && !is_walls))
 		{
-			if ((y == 0 || y == map_height - 1) && (map[y][x] != '1') ||
-				((x == 0 || x == map_width) && map[y][x] != '1'))
-			{
-				ft_lstclear(&game()->wall_list, free);
-				ft_lstclear(&game()->collectible_list, free);
-				free_array(map);
-				fputstr("Error\nInvalid map borders\n", 1);
-				return (false);
-			}
+			ft_lstclear(&game()->wall_list, free);
+			ft_lstclear(&game()->collectible_list, free);
+			free_array(map);
+			fputstr("Error\nInvalid map borders\n", 1);
+			return (false);
 		}
 	}
 	return (true);

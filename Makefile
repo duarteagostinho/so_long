@@ -9,7 +9,7 @@ CC_FLAGS = -g -Wall -Wextra -Werror
 MLX_FLAGS = -Lminilibx-linux -lmlx_Linux -lX11 -lXext
 INCLUDES = -I/usr/include -Imlx
 
-all: $(NAME)
+all: lib $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CC_FLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS)

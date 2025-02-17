@@ -116,6 +116,7 @@ bool			ate_everything(void);
 bool			can_finish(char **map);
 void			set_player_pos(int i, int line_pos);
 void			set_exit_point(int i, int line_pos);
+bool			line_is_walls(char *line);
 
 /* SRCS */
 t_img			*ft_load_image(char *path);

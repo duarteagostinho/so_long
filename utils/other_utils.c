@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_element.c                                      :+:      :+:    :+:   */
+/*   other_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duandrad <duandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:52:14 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/10 14:52:52 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:41:55 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,18 @@ void	set_exit_point(int i, int line_pos)
 {
 	game()->exit.x = i;
 	game()->exit.y = line_pos;
+}
+
+bool	line_is_walls(char *line)
+{
+	ssize_t	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		if (line[i] != '1')
+			return (false);
+		i++;
+	}
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: duandrad <duandrad@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:19:47 by duandrad          #+#    #+#             */
-/*   Updated: 2025/02/11 18:35:32 by duandrad         ###   ########.fr       */
+/*   Updated: 2025/02/25 23:31:40 by duandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ bool	process_line(char *line, size_t line_pos, size_t first_line_len)
 	{
 		if (line[i] == '1')
 			new_wall((int)(i), (int)(line_pos));
+		if (line[i] == 'X')
+			new_enemy((int)(i), (int)(line_pos));
 		if (line[i] == 'C')
 			new_collectible((int)(i), (int)(line_pos));
 		if (line[i] == 'P')
 			set_player_pos((int)(i), (int)(line_pos));
 		if (line[i] == 'E')
 			set_exit_point((int)(i), (int)(line_pos));
-		if (line[i] != '1' && line[i] != 'C'
+		if (line[i] != '1' && line[i] != 'X' && line[i] != 'C'
 			&& line[i] != 'P' && line[i] != 'E' && line[i] != '0'
 			&& line[i] != '\n')
 		{

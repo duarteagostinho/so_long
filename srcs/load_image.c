@@ -49,8 +49,9 @@ bool	load_images(void)
 	game()->player_img = ft_load_image("textures/player.xpm");
 	game()->collectible_img = ft_load_image("textures/collectible.xpm");
 	game()->exit_img = ft_load_image("textures/exit.xpm");
+	game()->enemy_img = ft_load_image("textures/enemy.xpm");
 	if (!game()->wall_img || !game()->player_img || !game()->collectible_img
-		|| !game()->exit_img)
+		|| !game()->exit_img || !game()->enemy_img)
 	{
 		fputstr("Error\nImage load\n", 1);
 		return (false);

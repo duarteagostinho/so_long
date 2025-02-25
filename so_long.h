@@ -36,12 +36,6 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-typedef struct s_wall
-{
-	int	x;
-	int	y;
-}	t_wall;
-
 typedef struct s_img
 {
 	void	*img;
@@ -52,12 +46,6 @@ typedef struct s_img
 	int		width;
 	int		height;
 }	t_img;
-
-typedef struct s_player
-{
-	int	x;
-	int	y;
-}	t_player;
 
 typedef struct s_point
 {
@@ -80,7 +68,7 @@ typedef struct s_game
 	void			*mlx;
 	void			*display;
 	void			*window;
-	t_player		player;
+	t_point			player;
 	int				width;
 	int				height;
 	char			**map;
@@ -90,6 +78,8 @@ typedef struct s_game
 	t_img			*collectible_img;
 	t_point			exit;
 	t_img			*exit_img;
+	t_list			*enemy_list;
+	t_img			*enemy_img;
 	int				player_count;
 	int				coll_count;
 	int				exit_count;
@@ -110,34 +100,39 @@ ssize_t			ft_strlen(char *str);
 ssize_t			ft_strlen_t(char *str, char term);
 size_t			array_length(char **av);
 char			**array_join(char **array, char *newstr);
+
+/* MAP PARSING */
 bool			check_borders(char **map);
 bool			check_counters(char **map);
 bool			ate_everything(void);
 bool			can_finish(char **map);
+bool			load_map(char *path);
 void			set_player_pos(int i, int line_pos);
 void			set_exit_point(int i, int line_pos);
 bool			line_is_walls(char *line);
 
-/* SRCS */
+/* ENGINE */
 t_img			*ft_load_image(char *path);
 int				ft_move(int key);
 int				ft_loop(void);
 void			clear_canvas(void);
+bool			load_images(void);
+bool			init_mlx(void);
+void			exit_game(int code);
+int				_exit_game(void);
+t_img			*ft_new_image(int width, int height);
+
+/* RENDER */
 void			draw_img(t_img *img, int x, int y);
 void			draw_walls(void);
 void			draw_player(void);
+void			draw_enemies(void);
 void			draw_collectibles(void);
+void			draw_exit(void);
 void			new_wall(int x, int y);
 void			new_collectible(int x, int y);
-bool			load_map(char *path);
-t_img			*ft_new_image(int width, int height);
-void			update_window_size(int width, int height);
-void			draw_exit(void);
-void			exit_game(int code);
-int				_exit_game(void);
+void			new_enemy(int x, int y);
 void			*list_collision(int x, int y, t_list *list);
 bool			collision(int x, int y, int x1, int y1);
-bool			load_images(void);
-bool			init_mlx(void);
 
 #endif

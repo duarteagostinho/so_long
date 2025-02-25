@@ -44,6 +44,7 @@ int	ft_loop(void)
 	draw_player();
 	draw_collectibles();
 	draw_exit();
+	draw_enemies();
 	mlx_put_image_to_window(game()->mlx, game()->window,
 		game()->canvas->img, 0, 0);
 	return (0);

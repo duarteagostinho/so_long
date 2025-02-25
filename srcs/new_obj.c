@@ -12,6 +12,18 @@
 
 #include "../so_long.h"
 
+void	new_enemy(int x, int y)
+{
+	t_point	*enemy;
+
+	enemy = malloc(sizeof(t_point));
+	if (!enemy)
+		return ;
+	enemy->x = x;
+	enemy->y = y;
+	ft_lstadd_back(&game()->enemy_list, ft_lstnew(enemy));
+}
+
 void	new_collectible(int x, int y)
 {
 	t_collectible	*collectible;
@@ -27,9 +39,9 @@ void	new_collectible(int x, int y)
 
 void	new_wall(int x, int y)
 {
-	t_wall	*wall;
+	t_point	*wall;
 
-	wall = malloc(sizeof(t_wall));
+	wall = malloc(sizeof(t_point));
 	if (!wall)
 		return ;
 	wall->x = x;

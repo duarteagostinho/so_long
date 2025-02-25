@@ -21,7 +21,7 @@ void	draw_player(void)
 void	draw_walls(void)
 {
 	t_list	*tmp;
-	t_wall	*wall;
+	t_point	*wall;
 
 	tmp = game()->wall_list;
 	while (tmp)
@@ -45,6 +45,21 @@ void	draw_collectibles(void)
 		if (collectible->active)
 			draw_img(game()->collectible_img, collectible->x * SPRITE_SIZE,
 				collectible->y * SPRITE_SIZE);
+		tmp = tmp->next;
+	}
+}
+
+void	draw_enemies(void)
+{
+	t_list	*tmp;
+	t_point	*enemy;
+
+	tmp = game()->enemy_list;
+	while (tmp)
+	{
+		enemy = tmp->content;
+		draw_img(game()->enemy_img, enemy->x * SPRITE_SIZE,
+			enemy->y * SPRITE_SIZE);
 		tmp = tmp->next;
 	}
 }

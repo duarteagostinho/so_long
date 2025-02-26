@@ -35,6 +35,11 @@ static void	check_exit_and_collectibles(void)
 {
 	t_collectible	*coll;
 
+	if (list_collision(game()->player.x, game()->player.y, game()->enemy_list))
+	{
+		fputstr("You Died x(\n", 1);
+		exit_game(0);
+	}
 	if (collision(game()->player.x, game()->player.y, game()->exit.x,
 			game()->exit.y) && ate_everything())
 	{

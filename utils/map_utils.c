@@ -48,14 +48,11 @@ char	**array_join(char **array, char *newstr)
 
 bool	check_borders(char **map)
 {
-	ssize_t	x;
-	ssize_t	y;
+	size_t	y;
 	size_t	map_height;
-	size_t	map_width;
 	bool	is_walls;
 
 	y = -1;
-	map_width = ft_strlen_t(map[0], '\n');
 	map_height = array_length(map);
 	while (++y < map_height)
 	{
@@ -76,8 +73,8 @@ bool	check_borders(char **map)
 
 void	count_elements(char **map, size_t map_height, size_t map_width)
 {
-	ssize_t	x;
-	ssize_t	y;
+	size_t	x;
+	size_t	y;
 
 	y = -1;
 	while (++y < map_height)

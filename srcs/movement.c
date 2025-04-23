@@ -56,6 +56,7 @@ int	ft_move(int key)
 {
 	bool	moved;
 
+	moved = false;
 	if (key == 65307)
 		exit_game(0);
 	else if (key == 119 || key == 65362)

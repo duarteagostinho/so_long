@@ -32,7 +32,7 @@ void	exit_game(int code)
 	mlx_destroy_image(game()->mlx, game()->exit_img->img);
 	mlx_destroy_image(game()->mlx, game()->canvas->img);
 	mlx_destroy_window(game()->mlx, game()->window);
-	mlx_destroy_display(game()->mlx);
+	/*mlx_destroy_display(game()->mlx);*/
 	free_array(game()->map);
 	free(game()->player_img);
 	free(game()->wall_img);

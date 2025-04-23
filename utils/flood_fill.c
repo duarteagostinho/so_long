@@ -31,7 +31,6 @@ static void	check_n_replace(char **map, ssize_t x, ssize_t y)
 
 static void	flood_fill_map(char **map)
 {
-	bool	changed;
 	ssize_t	x;
 	ssize_t	y;
 
@@ -44,7 +43,6 @@ static void	flood_fill_map(char **map)
 			if (map[y][x] == 'P')
 			{
 				check_n_replace(map, x, y);
-				changed = true;
 				return ;
 			}
 		}
